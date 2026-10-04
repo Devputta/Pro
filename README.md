@@ -1,11 +1,17 @@
-<div align="center">
+# 👋 Hello, I'm Mahadevu M P
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+🚀 **Software Engineer & Vibe Coder** passionate about building clean system architectures, full-stack web applications, and intuitive mobile experiences.
 
-  <h1>Built with AI Studio</h2>
-
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## 📁 Workspace Documentation (`/docs`)
+This repository contains a complete engineering workspace package:
+- `docs/PRD.md` - Product Requirements Document
+- `docs/architecture.md` - System Architecture & Data Flow
+- `docs/rules.md` - Coding Standards & Git Guidelines
+- `docs/phase.md` - Development Milestones & Roadmap
+- `docs/design.md` - UI/UX & Color Palette Guidelines
+- `docs/memory.md` - Decision Log & Architectural Trade-offs
+- `docs/security.md` - Security Policy & Secret Management
+- `docs/deploy.md` - Deployment Instructions (Vercel / GitHub Pages)
+- `docs/no-ai-cliche.md` - Editorial Guidelines for Authentic Code
+- `CONTRIBUTING.md` - Contribution Workflow
+- `index.html` - Production-ready portfolio and mobile viewer application

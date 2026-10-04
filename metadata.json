@@ -1,0 +1,8 @@
+{
+  "name": "MAHADEVU M P | Systems & Software Engineer Portfolio",
+  "description": "Native iOS windowed portfolio showcasing software engineering, open-source repositories, and system architectures by Mahadevu M P.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

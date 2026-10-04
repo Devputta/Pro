@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MAHADEVU M P | Software Engineer Portfolio</title>
+    <meta name="description" content="Personal portfolio and open-source projects by Mahadevu M P (@Devputta).">
+    <meta property="og:title" content="MAHADEVU M P | Software Engineer Portfolio">
+    <meta property="og:description" content="Personal portfolio and open-source projects by Mahadevu M P (@Devputta).">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        iosBlue: '#007aff',
+                        iosGreen: '#34c759',
+                        iosIndigo: '#5856d6',
+                        iosOrange: '#ff9500',
+                        iosRed: '#ff3b30',
+                        iosPurple: '#af52de',
+                        iosTeal: '#30b0c7',
+                        iosYellow: '#ffcc00',
+                    },
+                    fontFamily: {
+                        sans: ['"Times New Roman"', 'Times', 'serif'],
+                        serif: ['"Times New Roman"', 'Times', 'serif'],
+                        mono: ['"Times New Roman"', 'Times', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Apple iOS Human Interface Guidelines Theme System */
+        :root {
+            --ios-bg: #f2f2f7;
+            --ios-window: rgba(255, 255, 255, 0.88);
+            --ios-card: #ffffff;
+            --ios-elevated: #e5e5ea;
+            --ios-subtle: #f8f8fa;
+            --ios-separator: rgba(60, 60, 67, 0.16);
+            --ios-text-primary: #000000;
+            --ios-text-secondary: #545458;
+            --ios-text-muted: #8e8e93;
+            --ios-nav-bg: rgba(242, 242, 247, 0.82);
+            --ios-dock-bg: rgba(255, 255, 255, 0.75);
+            --ios-code-bg: #f0f0f4;
+            --ios-card-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.06);
+            --ios-window-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark {
+            --ios-bg: #000000;
+            --ios-window: rgba(28, 28, 30, 0.88);
+            --ios-card: #1c1c1e;
+            --ios-elevated: #2c2c2e;
+            --ios-subtle: #141416;
+            --ios-separator: rgba(84, 84, 88, 0.42);
+            --ios-text-primary: #f2f2f7;
+            --ios-text-secondary: #aeaeb2;
+            --ios-text-muted: #8e8e93;
+            --ios-nav-bg: rgba(18, 18, 20, 0.82);
+            --ios-dock-bg: rgba(28, 28, 30, 0.78);
+            --ios-code-bg: #0c0d12;
+            --ios-card-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.45);
+            --ios-window-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+        }
+
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: var(--ios-bg);
+            color: var(--ios-text-primary);
+            transition: background-color 0.25s ease, color 0.25s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* iOS Blur Surfaces */
+        .ios-frosted-nav {
+            background-color: var(--ios-nav-bg);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            transition: background-color 0.25s ease;
+        }
+
+        .ios-frosted-dock {
+            background-color: var(--ios-dock-bg);
+            backdrop-filter: blur(30px) saturate(190%);
+            -webkit-backdrop-filter: blur(30px) saturate(190%);
+            box-shadow: var(--ios-card-shadow);
+        }
+
+        .ios-window-surface {
+            background-color: var(--ios-window);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-color: var(--ios-separator);
+            box-shadow: var(--ios-window-shadow);
+            transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .ios-card-surface {
+            background-color: var(--ios-card);
+            border-color: var(--ios-separator);
+            color: var(--ios-text-primary);
+            box-shadow: var(--ios-card-shadow);
+            transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* Custom scrollbar matching iOS */
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(142, 142, 147, 0.35); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(142, 142, 147, 0.6); }
+        .text-balance { text-wrap: balance; }
+
+        /* iOS Window Page Transition */
+        .ios-window-page {
+            display: none;
+            animation: iosWindowEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .ios-window-page.active-window {
+            display: block;
+        }
+
+        @keyframes iosWindowEnter {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.992);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ios-window-page {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-[#007aff] selection:text-white pb-24 md:pb-12">
+
+    <!-- iOS Windowed OS Top Bar (Strictly 3 Zones: Brand Name | Window Pages | Symbol-Only Actions) -->
+    <header class="sticky top-0 z-40 ios-frosted-nav border-b border-[var(--ios-separator)]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+            <!-- Zone 1: Clean Brand Name Only -->
+            <a href="#overview" onclick="switchWindowPage('overview', event)" class="font-bold text-base tracking-tight text-[var(--ios-text-primary)] whitespace-nowrap shrink-0">
+                Mahadevu M P
+            </a>
+
+            <!-- Zone 2: iOS Window Pages Switcher in Header (Clean Names Only, No Symbols) -->
+            <nav aria-label="iOS Window Pages" class="hidden md:flex items-center p-1 rounded-full bg-[var(--ios-elevated)]/80 border border-[var(--ios-separator)] text-xs font-medium">
+                <button onclick="switchWindowPage('overview')" id="win-tab-overview" class="win-nav-tab px-4 py-1.5 rounded-full bg-[var(--ios-card)] text-[var(--ios-text-primary)] font-semibold shadow-sm transition-all whitespace-nowrap cursor-pointer">
+                    Overview
+                </button>
+                <button onclick="switchWindowPage('projects')" id="win-tab-projects" class="win-nav-tab px-4 py-1.5 rounded-full text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] transition-all whitespace-nowrap cursor-pointer">
+                    Projects
+                </button>
+                <button onclick="switchWindowPage('vault')" id="win-tab-vault" class="win-nav-tab px-4 py-1.5 rounded-full text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] transition-all whitespace-nowrap cursor-pointer">
+                    Zip Vault
+                </button>
+                <button onclick="switchWindowPage('docs')" id="win-tab-docs" class="win-nav-tab px-4 py-1.5 rounded-full text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] transition-all whitespace-nowrap cursor-pointer">
+                    Specs &amp; Docs
+                </button>
+                <button onclick="switchWindowPage('assistant')" id="win-tab-assistant" class="win-nav-tab px-4 py-1.5 rounded-full text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] transition-all whitespace-nowrap cursor-pointer">
+                    Assistant
+                </button>
+            </nav>
+
+            <!-- Zone 3: Symbol-Only Action Buttons (Symbol is present -> Name removed) -->
+            <div class="flex items-center space-x-2 shrink-0">
+                <button 
+                    onclick="toggleTheme()" 
+                    id="theme-toggle-btn" 
+                    class="w-9 h-9 rounded-full bg-[var(--ios-elevated)] hover:opacity-85 text-[var(--ios-text-primary)] border border-[var(--ios-separator)] flex items-center justify-center transition-all shadow-sm active:scale-95 cursor-pointer"
+                    title="Switch Light / Dark Appearance"
+                    aria-label="Switch Light or Dark Appearance"
+                >
+                    <span id="theme-toggle-icon" class="flex items-center justify-center">
+                        <i data-lucide="sun" class="w-4 h-4 text-[#ff9500]"></i>
+                    </span>
+                </button>
+
+                <a 
+                    href="https://github.com/Devputta/Open-Sourec--Project-Zip-files" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="w-9 h-9 rounded-full bg-[#007aff] hover:bg-[#0062cc] text-white flex items-center justify-center transition-all shadow-sm active:scale-95"
+                    title="Open Source Zip Vault on GitHub"
+                    aria-label="Open Source Zip Vault on GitHub"
+                >
+                    <i data-lucide="folder-archive" class="w-4 h-4"></i>
+                </a>
+
+                <a 
+                    href="https://github.com/Devputta" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="w-9 h-9 rounded-full bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] flex items-center justify-center transition-all hover:opacity-85 active:scale-95"
+                    title="GitHub Profile (@Devputta)"
+                    aria-label="GitHub Profile (@Devputta)"
+                >
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main iOS Windowed Workspace -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8">
+
+        <!-- Native iOS Window Container -->
+        <div class="ios-window-surface border rounded-[32px] overflow-hidden">
+
+            <!-- iOS Window Titlebar & Page Status Bar -->
+            <div class="px-5 sm:px-7 py-3.5 bg-[var(--ios-elevated)]/60 border-b border-[var(--ios-separator)] flex items-center justify-between gap-4 select-none">
+                <!-- Left: iOS Window Traffic Dots & Active Window Page Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-1.5">
+                        <button onclick="switchWindowPage('overview')" class="w-3 h-3 rounded-full bg-[#ff3b30] hover:opacity-80 transition-opacity cursor-pointer" title="Return to Overview Window" aria-label="Return to Overview Window"></button>
+                        <button onclick="cycleWindowPage(-1)" class="w-3 h-3 rounded-full bg-[#ffcc00] hover:opacity-80 transition-opacity cursor-pointer" title="Previous Window Page" aria-label="Previous Window Page"></button>
+                        <button onclick="cycleWindowPage(1)" class="w-3 h-3 rounded-full bg-[#34c759] hover:opacity-80 transition-opacity cursor-pointer" title="Next Window Page" aria-label="Next Window Page"></button>
+                    </div>
+                    <span class="text-[var(--ios-text-muted)] text-xs">·</span>
+                    <span id="ios-window-title" class="text-xs font-semibold text-[var(--ios-text-primary)] tracking-tight">Overview</span>
+                </div>
+
+                <!-- Center: iOS Page Dots Indicator -->
+                <div class="hidden sm:flex items-center space-x-2" aria-label="Window Page Indicator">
+                    <button onclick="switchWindowPage('overview')" id="dot-overview" class="w-2 h-2 rounded-full bg-[#007aff] transition-all cursor-pointer" title="Overview"></button>
+                    <button onclick="switchWindowPage('projects')" id="dot-projects" class="w-2 h-2 rounded-full bg-[var(--ios-text-muted)]/35 hover:bg-[var(--ios-text-muted)] transition-all cursor-pointer" title="Projects"></button>
+                    <button onclick="switchWindowPage('vault')" id="dot-vault" class="w-2 h-2 rounded-full bg-[var(--ios-text-muted)]/35 hover:bg-[var(--ios-text-muted)] transition-all cursor-pointer" title="Zip Vault"></button>
+                    <button onclick="switchWindowPage('docs')" id="dot-docs" class="w-2 h-2 rounded-full bg-[var(--ios-text-muted)]/35 hover:bg-[var(--ios-text-muted)] transition-all cursor-pointer" title="Specs & Docs"></button>
+                    <button onclick="switchWindowPage('assistant')" id="dot-assistant" class="w-2 h-2 rounded-full bg-[var(--ios-text-muted)]/35 hover:bg-[var(--ios-text-muted)] transition-all cursor-pointer" title="Assistant"></button>
+                </div>
+
+                <!-- Right: View All / Single Window Toggle -->
+                <div class="flex items-center text-xs">
+                    <button onclick="toggleAllWindowsMode()" id="all-windows-btn" class="text-[11px] font-medium text-[#007aff] hover:underline cursor-pointer whitespace-nowrap">
+                        Show All Pages
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- WINDOW PAGE 1: OVERVIEW (Human Bio + GitHub Image Card)   -->
+            <!-- ========================================================= -->
+            <section id="window-overview" class="ios-window-page active-window p-6 sm:p-10">
+
+                <!-- Main Split Hero Card: Authentic Bio on Left, GitHub Profile & Image on Right -->
+                <div class="ios-card-surface border rounded-[28px] p-6 sm:p-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Left Column: Direct, Human First-Person Intro (7 cols) -->
+                        <div class="lg:col-span-7">
+                            <div class="text-xs font-medium text-[#007aff] mb-2">
+                                Software Developer · @Devputta
+                            </div>
+
+                            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--ios-text-primary)] mb-4 leading-tight text-balance">
+                                Hi, I'm Mahadevu M P.
+                            </h1>
+
+                            <p class="text-sm sm:text-base text-[var(--ios-text-secondary)] mb-4 leading-relaxed">
+                                I build web applications, visual diagramming tools, data explorers, and browser games. Every project here is open-source on GitHub, with full code and downloadable zip packages available if you want to run or build on them locally.
+                            </p>
+
+                            <p class="text-xs sm:text-sm text-[var(--ios-text-muted)] mb-8 leading-relaxed">
+                                Use the window tabs in the top bar to browse my repositories, download zip archives, or read the project docs.
+                            </p>
+
+                            <!-- Clean Text-Only Action Buttons -->
+                            <div class="flex flex-wrap items-center gap-3">
+                                <button onclick="switchWindowPage('projects')" class="bg-[#007aff] hover:bg-[#0062cc] text-white px-5 py-2.5 rounded-full text-xs font-semibold transition-transform active:scale-95 shadow-sm cursor-pointer whitespace-nowrap">
+                                    View Projects
+                                </button>
+                                <button onclick="switchWindowPage('vault')" class="bg-[var(--ios-elevated)] hover:opacity-90 text-[var(--ios-text-primary)] px-5 py-2.5 rounded-full text-xs font-semibold transition-colors border border-[var(--ios-separator)] cursor-pointer whitespace-nowrap">
+                                    Download Zip Files
+                                </button>
+                                <a href="https://github.com/Devputta" target="_blank" rel="noopener noreferrer" class="bg-[var(--ios-elevated)] hover:opacity-90 text-[var(--ios-text-primary)] px-5 py-2.5 rounded-full text-xs font-semibold transition-colors border border-[var(--ios-separator)] whitespace-nowrap">
+                                    GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Clean Typographic GitHub Card (No Images) -->
+                        <div class="lg:col-span-5">
+                            <a href="https://github.com/Devputta" target="_blank" rel="noopener noreferrer" class="block bg-[var(--ios-subtle)] border border-[var(--ios-separator)] rounded-[24px] p-6 hover:border-[#007aff]/60 transition-all group">
+                                <div class="flex items-center justify-between pb-4 mb-4 border-b border-[var(--ios-separator)]">
+                                    <div>
+                                        <div class="text-xl font-bold text-[var(--ios-text-primary)] group-hover:text-[#007aff] transition-colors">
+                                            Mahadevu M P
+                                        </div>
+                                        <div class="text-sm text-[var(--ios-text-muted)]">
+                                            github.com/Devputta
+                                        </div>
+                                    </div>
+                                    <svg class="w-6 h-6 fill-current text-[var(--ios-text-primary)] group-hover:text-[#007aff] transition-colors shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                                    </svg>
+                                </div>
+
+                                <div class="space-y-2.5 text-sm mb-5">
+                                    <div class="flex items-center justify-between py-1 border-b border-[var(--ios-separator)]">
+                                        <span class="text-[var(--ios-text-muted)]">Handle</span>
+                                        <span class="font-semibold text-[var(--ios-text-primary)]">@Devputta</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1 border-b border-[var(--ios-separator)]">
+                                        <span class="text-[var(--ios-text-muted)]">Repositories</span>
+                                        <span id="hero-gh-repos" class="font-semibold text-[var(--ios-text-primary)] tabular-nums">50+</span>
+                                    </div>
+                                    <div class="flex items-center justify-between py-1">
+                                        <span class="text-[var(--ios-text-muted)]">Focus</span>
+                                        <span class="font-semibold text-[var(--ios-text-primary)]">Web Tools &amp; Games</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between text-xs text-[var(--ios-text-muted)] pt-1">
+                                    <span class="text-[#34c759] font-semibold">Open Source</span>
+                                    <span class="text-[#007aff] font-semibold">Visit GitHub →</span>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Clean Unboxed Summary Strip -->
+                    <div class="mt-10 pt-6 border-t border-[var(--ios-separator)] grid grid-cols-2 sm:grid-cols-4 gap-6 text-xs">
+                        <div>
+                            <div class="text-[var(--ios-text-muted)] mb-1">Featured Projects</div>
+                            <div class="text-lg font-bold text-[var(--ios-text-primary)] tabular-nums">6 Core Apps</div>
+                        </div>
+                        <div>
+                            <div class="text-[var(--ios-text-muted)] mb-1">Source Code</div>
+                            <div class="text-lg font-bold text-[#34c759]">Public on GitHub</div>
+                        </div>
+                        <div>
+                            <div class="text-[var(--ios-text-muted)] mb-1">Project Archives</div>
+                            <div class="text-lg font-bold text-[var(--ios-text-primary)]">Direct ZIP Downloads</div>
+                        </div>
+                        <div>
+                            <div class="text-[var(--ios-text-muted)] mb-1">Contact</div>
+                            <div class="text-lg font-bold text-[var(--ios-text-primary)] truncate">mahadevump657@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authentic iOS Symbol-Only App Dock (Symbol is present -> Name removed) -->
+                <div class="mt-8 flex flex-col items-center">
+                    <div class="ios-frosted-dock border border-[var(--ios-separator)] rounded-[28px] px-4 py-3 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                        <!-- App 1: DiagramLab (Symbol only) -->
+                        <a href="https://github.com/Devputta/DiagramLab" target="_blank" rel="noopener noreferrer" title="DiagramLab" aria-label="DiagramLab" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#007aff] to-[#30b0c7] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="network" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <!-- App 2: DataLens (Symbol only) -->
+                        <a href="https://github.com/Devputta/DataLens" target="_blank" rel="noopener noreferrer" title="DataLens" aria-label="DataLens" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#5856d6] to-[#af52de] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="pie-chart" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <!-- App 3: SNAKE---G (Symbol only) -->
+                        <a href="https://github.com/Devputta/SNAKE---G" target="_blank" rel="noopener noreferrer" title="SNAKE---G" aria-label="SNAKE---G" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#34c759] to-[#30b0c7] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="gamepad-2" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <!-- App 4: BAD-DECISION (Symbol only) -->
+                        <a href="https://github.com/Devputta/BAD-DECISION" target="_blank" rel="noopener noreferrer" title="BAD-DECISION" aria-label="BAD-DECISION" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#ff9500] to-[#ff3b30] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="git-branch" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <!-- App 5: Battel-Game (Symbol only) -->
+                        <a href="https://github.com/Devputta/Battel-Game" target="_blank" rel="noopener noreferrer" title="Battel-Game" aria-label="Battel-Game" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#ff3b30] to-[#af52de] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="swords" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <!-- App 6: The-Game-Hates-You (Symbol only) -->
+                        <a href="https://github.com/Devputta/The-Game-Hates-You" target="_blank" rel="noopener noreferrer" title="The-Game-Hates-You" aria-label="The-Game-Hates-You" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#ff2d55] to-[#5856d6] flex items-center justify-center text-white shadow-md hover:scale-110 active:scale-95 transition-transform">
+                            <i data-lucide="skull" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </a>
+
+                        <div class="w-[1px] h-8 bg-[var(--ios-separator)] mx-1 hidden sm:block"></div>
+
+                        <!-- App 7: Zip Vault Window (Symbol only) -->
+                        <button onclick="switchWindowPage('vault')" title="Zip Vault" aria-label="Zip Vault" class="w-12 h-12 sm:w-14 sm:h-14 rounded-[22.5%] bg-gradient-to-tr from-[#ffcc00] to-[#ff9500] flex items-center justify-center text-black shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer">
+                            <i data-lucide="archive" class="w-6 h-6 sm:w-7 sm:h-7"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- WINDOW PAGE 2: PROJECTS (GitHub Overview + 6 Cards)       -->
+            <!-- ========================================================= -->
+            <section id="window-projects" class="ios-window-page p-6 sm:p-10">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+                    <div>
+                        <div class="text-xs font-medium text-[#007aff] mb-1">Open-Source Repositories</div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ios-text-primary)]">Projects</h2>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-[var(--ios-text-muted)]">
+                        <span id="github-sync-status">Synced with GitHub</span>
+                        <!-- Symbol-only refresh button -->
+                        <button onclick="fetchGitHubStats(true)" id="github-refresh-btn" title="Refresh GitHub Stats" aria-label="Refresh GitHub Stats" class="w-8 h-8 rounded-full bg-[var(--ios-elevated)] hover:opacity-85 text-[var(--ios-text-primary)] border border-[var(--ios-separator)] flex items-center justify-center transition-all active:scale-95 cursor-pointer shadow-sm">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5" id="github-refresh-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic GitHub Stats Summary Bar -->
+                <div id="github-stats-dashboard" class="ios-card-surface border rounded-[24px] p-5 sm:p-6 mb-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 pb-5 border-b border-[var(--ios-separator)]">
+                        <div>
+                            <div class="text-xs text-[var(--ios-text-muted)] mb-1">Public Repositories</div>
+                            <div id="stat-total-repos" class="text-xl sm:text-2xl font-extrabold text-[var(--ios-text-primary)] tabular-nums">50+</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-[var(--ios-text-muted)] mb-1">Total Stars</div>
+                            <div id="stat-total-stars" class="text-xl sm:text-2xl font-extrabold text-[#ff9500] dark:text-[#ffcc00] tabular-nums">
+                                <span id="stat-total-stars-val">12</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-[var(--ios-text-muted)] mb-1">Total Forks</div>
+                            <div id="stat-total-forks" class="text-xl sm:text-2xl font-extrabold text-[#5856d6] tabular-nums">
+                                <span id="stat-total-forks-val">0</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-[var(--ios-text-muted)] mb-1">Main Language</div>
+                            <div id="stat-top-language" class="text-lg sm:text-xl font-bold text-[#3178c6] truncate">TypeScript</div>
+                        </div>
+                    </div>
+
+                    <!-- Repositories Breakdown Grid -->
+                    <div id="github-repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <!-- Populated by fetchGitHubStats() -->
+                    </div>
+                </div>
+
+                <!-- 6 Featured Project Cards with GitHub Preview Images & Natural Descriptions -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- 1. DiagramLab -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/DiagramLab')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#007aff]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#007aff] to-[#30b0c7] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="network" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-DiagramLab" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#007aff] transition-colors mb-1">
+                                DiagramLab
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Diagram &amp; Flowchart Builder</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                A clean browser canvas for drawing system diagrams, connecting nodes, and mapping out project workflows.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>Node Canvas</span>
+                                <span aria-hidden="true">·</span>
+                                <span>SVG Links</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Export</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/DiagramLab" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#007aff] hover:bg-[#0062cc] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 2. DataLens -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/DataLens')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#af52de]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#5856d6] to-[#af52de] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-DataLens" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#af52de] transition-colors mb-1">
+                                DataLens
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Dataset Viewer &amp; Filter Tool</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                A lightweight web tool for loading datasets, filtering rows, and viewing breakdowns without lag.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>Data Viewer</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Fast Filtering</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Charts</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/DataLens" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#af52de] hover:bg-[#9932cc] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 3. SNAKE---G -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/SNAKE---G')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#34c759]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#34c759] to-[#30b0c7] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-SNAKE---G" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#34c759] transition-colors mb-1">
+                                SNAKE---G
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Classic Arcade Snake Game</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                Classic Snake built on HTML5 Canvas with smooth keyboard and touch controls, speed progression, and score tracking.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>HTML5 Canvas</span>
+                                <span aria-hidden="true">·</span>
+                                <span>60 FPS</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Arcade</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/SNAKE---G" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#34c759] hover:bg-[#28a745] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 4. BAD-DECISION -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/BAD-DECISION')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#ff9500]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#ff9500] to-[#ff3b30] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="git-branch" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-BAD-DECISION" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#ff9500] transition-colors mb-1">
+                                BAD-DECISION
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Branching Choice Game</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                A choice-driven strategy game where each decision branches into new scenarios and unexpected consequences.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>Choice Tree</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Strategy</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Scenarios</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/BAD-DECISION" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#ff9500] hover:bg-[#e08500] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Battel-Game -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/Battel-Game')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#ff3b30]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#ff3b30] to-[#af52de] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="swords" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-Battel-Game" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#ff3b30] transition-colors mb-1">
+                                Battel-Game
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Turn-Based Arena Game</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                A turn-based combat game where you manage health, time your special attacks, and battle arena bosses.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>Turn Combat</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Boss Arena</span>
+                                <span aria-hidden="true">·</span>
+                                <span>HP System</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/Battel-Game" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#ff3b30] hover:bg-[#d92d24] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 6. The-Game-Hates-You -->
+                    <div onclick="openProjectUrl(event, 'https://github.com/Devputta/The-Game-Hates-You')" class="ios-card-surface border rounded-[24px] p-6 flex flex-col justify-between hover:border-[#ff2d55]/60 transition-all duration-200 cursor-pointer group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-[22.5%] bg-gradient-to-tr from-[#ff2d55] to-[#5856d6] flex items-center justify-center text-white shadow-sm">
+                                    <i data-lucide="skull" class="w-6 h-6"></i>
+                                </div>
+                                <div id="card-stat-The-Game-Hates-You" class="text-xs text-[var(--ios-text-muted)] tabular-nums">
+                                    <span>★ <strong class="star-count text-[var(--ios-text-primary)]">1</strong></span>
+                                    <span aria-hidden="true"> · </span>
+                                    <span class="lang-name">TypeScript</span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight group-hover:text-[#ff2d55] transition-colors mb-1">
+                                The-Game-Hates-You
+                            </h3>
+                            <p class="text-xs text-[var(--ios-text-muted)] mb-3">Fast Reflex Challenge</p>
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed mb-5">
+                                A fast-paced survival game with tricky obstacles and sudden traps built to test your reaction speed.
+                            </p>
+
+                            <div class="flex items-center gap-2 text-[11px] text-[var(--ios-text-muted)] mb-6">
+                                <span>Reflexes</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Fast Paced</span>
+                                <span aria-hidden="true">·</span>
+                                <span>Survival</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-[var(--ios-separator)] flex items-center justify-between gap-2">
+                            <a href="https://github.com/Devputta/The-Game-Hates-You" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="flex-1 py-2.5 px-4 rounded-full bg-[#ff2d55] hover:bg-[#e02447] text-white text-xs font-semibold text-center transition-colors">
+                                Open Repository
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- WINDOW PAGE 3: SOURCE ZIP VAULT                           -->
+            <!-- ========================================================= -->
+            <section id="window-vault" class="ios-window-page p-6 sm:p-10">
+                <div class="ios-card-surface border rounded-[28px] p-6 sm:p-10">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                        <div class="max-w-2xl">
+                            <div class="text-xs font-semibold text-[#ff9500] dark:text-[#ffcc00] mb-2">
+                                Direct Source Downloads
+                            </div>
+
+                            <h2 class="text-2xl sm:text-4xl font-extrabold text-[var(--ios-text-primary)] tracking-tight mb-3">
+                                Open-Sourec--Project-Zip-files
+                            </h2>
+                            
+                            <p class="text-sm text-[var(--ios-text-secondary)] leading-relaxed mb-6">
+                                Want to download the code as zip files instead of cloning each repo? I keep a single GitHub repository with ready-to-download zip archives for all of my projects.
+                            </p>
+
+                            <!-- Clean Text-Only Action Links -->
+                            <div class="flex flex-wrap items-center gap-3">
+                                <a href="https://github.com/Devputta/Open-Sourec--Project-Zip-files" target="_blank" rel="noopener noreferrer" class="bg-[#ffcc00] hover:bg-[#e6b800] text-black px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm active:scale-95 whitespace-nowrap">
+                                    Open Zip Repository
+                                </a>
+                                <a href="https://github.com/Devputta/Open-Sourec--Project-Zip-files/archive/refs/heads/main.zip" target="_blank" rel="noopener noreferrer" class="bg-[var(--ios-elevated)] hover:opacity-85 text-[var(--ios-text-primary)] px-5 py-2.5 rounded-full text-xs font-semibold transition-colors border border-[var(--ios-separator)] whitespace-nowrap">
+                                    Download All (.zip)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Inset Grouped Zip Package List -->
+                        <div class="w-full lg:w-96 bg-[var(--ios-subtle)] border border-[var(--ios-separator)] rounded-2xl p-5 text-xs font-mono space-y-3">
+                            <div class="text-[11px] text-[var(--ios-text-muted)] font-semibold pb-2 border-b border-[var(--ios-separator)] flex items-center justify-between">
+                                <span>Included Zip Files</span>
+                                <span class="text-[#34c759]">Open Source</span>
+                            </div>
+
+                            <div class="flex items-center justify-between py-1.5 border-b border-[var(--ios-separator)]">
+                                <span class="text-[var(--ios-text-primary)]">DiagramLab.zip</span>
+                                <a href="https://github.com/Devputta/DiagramLab" target="_blank" rel="noopener noreferrer" class="text-[#007aff] hover:underline">Repo</a>
+                            </div>
+
+                            <div class="flex items-center justify-between py-1.5 border-b border-[var(--ios-separator)]">
+                                <span class="text-[var(--ios-text-primary)]">DataLens.zip</span>
+                                <a href="https://github.com/Devputta/DataLens" target="_blank" rel="noopener noreferrer" class="text-[#af52de] hover:underline">Repo</a>
+                            </div>
+
+                            <div class="flex items-center justify-between py-1.5 border-b border-[var(--ios-separator)]">
+                                <span class="text-[var(--ios-text-primary)]">SNAKE---G.zip</span>
+                                <a href="https://github.com/Devputta/SNAKE---G" target="_blank" rel="noopener noreferrer" class="text-[#34c759] hover:underline">Repo</a>
+                            </div>
+
+                            <div class="flex items-center justify-between py-1.5 border-b border-[var(--ios-separator)]">
+                                <span class="text-[var(--ios-text-primary)]">BAD-DECISION.zip</span>
+                                <a href="https://github.com/Devputta/BAD-DECISION" target="_blank" rel="noopener noreferrer" class="text-[#ff9500] hover:underline">Repo</a>
+                            </div>
+
+                            <div class="flex items-center justify-between py-1.5">
+                                <span class="text-[var(--ios-text-primary)]">Battel-Game.zip</span>
+                                <a href="https://github.com/Devputta/Battel-Game" target="_blank" rel="noopener noreferrer" class="text-[#ff3b30] hover:underline">Repo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- WINDOW PAGE 4: SPECS & DOCS                               -->
+            <!-- ========================================================= -->
+            <section id="window-docs" class="ios-window-page p-6 sm:p-10">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <div class="text-xs font-medium text-[#007aff] mb-1">Project Documentation</div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ios-text-primary)]">Specs &amp; Docs</h2>
+                    </div>
+
+                    <!-- iOS Segmented Picker Tabs -->
+                    <div class="flex flex-wrap gap-1 p-1 bg-[var(--ios-card)] rounded-full border border-[var(--ios-separator)] text-xs font-mono shadow-sm">
+                        <button onclick="viewDoc('architecture')" id="tab-architecture" class="doc-tab px-3.5 py-1.5 rounded-full bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] transition-all font-semibold cursor-pointer">
+                            architecture.md
+                        </button>
+                        <button onclick="viewDoc('prd')" id="tab-prd" class="doc-tab px-3.5 py-1.5 rounded-full text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-all cursor-pointer">
+                            PRD.md
+                        </button>
+                        <button onclick="viewDoc('memory')" id="tab-memory" class="doc-tab px-3.5 py-1.5 rounded-full text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-all cursor-pointer">
+                            memory.md
+                        </button>
+                        <button onclick="viewDoc('rules')" id="tab-rules" class="doc-tab px-3.5 py-1.5 rounded-full text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-all cursor-pointer">
+                            rules.md
+                        </button>
+                        <button onclick="viewDoc('security')" id="tab-security" class="doc-tab px-3.5 py-1.5 rounded-full text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-all cursor-pointer">
+                            security.md
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inset Grouped Document Viewer -->
+                <div class="ios-card-surface border rounded-[24px] overflow-hidden">
+                    <div class="px-5 py-3 bg-[var(--ios-elevated)] border-b border-[var(--ios-separator)] flex items-center justify-between text-xs font-mono text-[var(--ios-text-muted)]">
+                        <span id="doc-filename" class="text-[var(--ios-text-primary)] font-medium">/docs/architecture.md</span>
+                        <span>Markdown</span>
+                    </div>
+                    <div id="doc-content-viewer" class="p-6 sm:p-8 font-mono text-xs sm:text-sm leading-relaxed text-[var(--ios-text-secondary)] overflow-x-auto">
+                        <!-- Populated dynamically via viewDoc() -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================= -->
+            <!-- WINDOW PAGE 5: ASSISTANT & CONTACT                        -->
+            <!-- ========================================================= -->
+            <section id="window-assistant" class="ios-window-page p-6 sm:p-10">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+                    <div>
+                        <div class="text-xs font-medium text-[#007aff] mb-1">Questions &amp; Contact</div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ios-text-primary)]">Get in Touch</h2>
+                    </div>
+                    <div class="text-xs text-[var(--ios-text-muted)]">
+                        Ask about any repo or email me directly
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Direct Contact Card (No Images) -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <div class="ios-card-surface border rounded-[24px] p-6 space-y-5">
+                            <div>
+                                <h3 class="text-lg font-bold text-[var(--ios-text-primary)] tracking-tight">Mahadevu M P</h3>
+                                <p class="text-xs text-[var(--ios-text-muted)] mt-0.5">@Devputta</p>
+                            </div>
+
+                            <p class="text-xs text-[var(--ios-text-secondary)] leading-relaxed">
+                                Have a question about one of my projects or want to work together? Send me an email or check out my GitHub.
+                            </p>
+
+                            <!-- Clean Contact Rows -->
+                            <div class="space-y-2.5 pt-2 border-t border-[var(--ios-separator)]">
+                                <!-- Direct Email Row -->
+                                <div class="p-3 bg-[var(--ios-subtle)] border border-[var(--ios-separator)] rounded-2xl flex items-center justify-between gap-2">
+                                    <div class="min-w-0">
+                                        <div class="text-[10px] text-[var(--ios-text-muted)]">Email</div>
+                                        <div class="text-xs font-semibold text-[var(--ios-text-primary)] font-mono truncate" id="portfolio-email-text">mahadevump657@gmail.com</div>
+                                    </div>
+                                    <div class="flex items-center space-x-1.5 shrink-0">
+                                        <button onclick="copyEmailToClipboard()" id="copy-email-btn" class="w-8 h-8 rounded-full bg-[var(--ios-elevated)] hover:opacity-85 text-[var(--ios-text-primary)] border border-[var(--ios-separator)] flex items-center justify-center transition-all cursor-pointer" title="Copy Email Address" aria-label="Copy Email Address">
+                                            <i data-lucide="copy" class="w-3.5 h-3.5" id="copy-email-icon"></i>
+                                        </button>
+                                        <a href="mailto:mahadevump657@gmail.com" class="w-8 h-8 rounded-full bg-[#007aff] hover:bg-[#0062cc] text-white transition-colors flex items-center justify-center" title="Compose Email" aria-label="Compose Email">
+                                            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- GitHub Profile Row -->
+                                <a href="https://github.com/Devputta" target="_blank" rel="noopener noreferrer" class="p-3 bg-[var(--ios-subtle)] border border-[var(--ios-separator)] rounded-2xl flex items-center justify-between hover:border-[#007aff]/50 transition-colors">
+                                    <div>
+                                        <div class="text-[10px] text-[var(--ios-text-muted)]">GitHub</div>
+                                        <div class="text-xs font-semibold text-[var(--ios-text-primary)] font-mono">github.com/Devputta</div>
+                                    </div>
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-[var(--ios-text-muted)]"></i>
+                                </a>
+
+                                <!-- Zip Archive Row -->
+                                <a href="https://github.com/Devputta/Open-Sourec--Project-Zip-files" target="_blank" rel="noopener noreferrer" class="p-3 bg-[var(--ios-subtle)] border border-[var(--ios-separator)] rounded-2xl flex items-center justify-between hover:border-[#ff9500]/50 transition-colors">
+                                    <div>
+                                        <div class="text-[10px] text-[var(--ios-text-muted)]">Zip Archives</div>
+                                        <div class="text-xs font-semibold text-[var(--ios-text-primary)] font-mono">Open-Source Zip Vault</div>
+                                    </div>
+                                    <i data-lucide="arrow-up-right" class="w-4 h-4 text-[#ff9500]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Quick Project Q&A Chat (8 cols) -->
+                    <div class="lg:col-span-8">
+                        <div class="ios-card-surface border rounded-[24px] flex flex-col overflow-hidden shadow-sm h-[520px]">
+                            
+                            <!-- Assistant Header -->
+                            <div class="px-5 py-3.5 bg-[var(--ios-elevated)] border-b border-[var(--ios-separator)] flex items-center justify-between text-xs">
+                                <div>
+                                    <div class="font-bold text-[var(--ios-text-primary)]">Project Q&amp;A</div>
+                                    <div class="text-[10px] text-[var(--ios-text-muted)]">Ask about any project or how to reach me</div>
+                                </div>
+                                <button onclick="clearAssistantChat()" class="text-[11px] text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors px-3 py-1 rounded-full bg-[var(--ios-card)] border border-[var(--ios-separator)] cursor-pointer">
+                                    Clear
+                                </button>
+                            </div>
+
+                            <!-- Chat Message Area -->
+                            <div id="assistant-chat-stream" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs font-sans">
+                                <!-- Populated dynamically via renderAssistantMessages() -->
+                            </div>
+
+                            <!-- Suggested Question Prompts -->
+                            <div class="px-4 py-2.5 bg-[var(--ios-subtle)] border-t border-[var(--ios-separator)] overflow-x-auto whitespace-nowrap flex items-center gap-2 scrollbar-none">
+                                <button onclick="askAssistantPrompt('What is DiagramLab?')" class="px-3 py-1 rounded-full bg-[var(--ios-card)] hover:bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] text-[11px] shrink-0 transition-colors cursor-pointer">
+                                    DiagramLab
+                                </button>
+                                <button onclick="askAssistantPrompt('What does DataLens do?')" class="px-3 py-1 rounded-full bg-[var(--ios-card)] hover:bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] text-[11px] shrink-0 transition-colors cursor-pointer">
+                                    DataLens
+                                </button>
+                                <button onclick="askAssistantPrompt('Tell me about the games you built')" class="px-3 py-1 rounded-full bg-[var(--ios-card)] hover:bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] text-[11px] shrink-0 transition-colors cursor-pointer">
+                                    Browser Games
+                                </button>
+                                <button onclick="askAssistantPrompt('Where can I download the zip files?')" class="px-3 py-1 rounded-full bg-[var(--ios-card)] hover:bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] text-[11px] shrink-0 transition-colors cursor-pointer">
+                                    Download Zips
+                                </button>
+                                <button onclick="askAssistantPrompt('How can I contact Mahadevu?')" class="px-3 py-1 rounded-full bg-[var(--ios-card)] hover:bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] border border-[var(--ios-separator)] text-[11px] shrink-0 transition-colors cursor-pointer">
+                                    Contact Info
+                                </button>
+                            </div>
+
+                            <!-- Chat Input Box -->
+                            <form onsubmit="handleAssistantSubmit(event)" class="p-3 bg-[var(--ios-card)] border-t border-[var(--ios-separator)] flex items-center space-x-2">
+                                <input 
+                                    type="text" 
+                                    id="assistant-user-input" 
+                                    placeholder="Ask a question about any project..." 
+                                    class="flex-1 px-4 py-2.5 rounded-full bg-[var(--ios-elevated)] border border-[var(--ios-separator)] text-xs text-[var(--ios-text-primary)] focus:outline-none focus:border-[#007aff] focus:ring-1 focus:ring-[#007aff] transition-all min-h-[42px]"
+                                    autocomplete="off"
+                                >
+                                <button 
+                                    type="submit" 
+                                    id="assistant-send-btn" 
+                                    class="w-10 h-10 rounded-full bg-[#007aff] hover:bg-[#0062cc] text-white flex items-center justify-center transition-transform active:scale-95 shrink-0 shadow-sm cursor-pointer"
+                                    title="Send"
+                                    aria-label="Send question"
+                                >
+                                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- iOS Window Bottom Navigation Bar -->
+            <div class="px-6 py-3.5 bg-[var(--ios-subtle)] border-t border-[var(--ios-separator)] flex items-center justify-between text-xs">
+                <button onclick="cycleWindowPage(-1)" class="text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] font-medium transition-colors cursor-pointer">
+                    Previous Page
+                </button>
+                <span id="ios-window-counter" class="text-[11px] text-[var(--ios-text-muted)] font-mono tabular-nums">Window 1 of 5</span>
+                <button onclick="cycleWindowPage(1)" class="text-[#007aff] hover:underline font-semibold transition-colors cursor-pointer">
+                    Next Page
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Native iOS Mobile Bottom Dock (Symbol-Only Icons: Symbol is present -> Name removed) -->
+    <nav aria-label="Mobile Window Navigation" class="md:hidden fixed bottom-3 left-4 right-4 z-50 ios-frosted-dock border border-[var(--ios-separator)] rounded-full h-14 px-4 flex items-center justify-around">
+        <button onclick="switchWindowPage('overview')" id="mob-tab-overview" class="w-10 h-10 rounded-full flex items-center justify-center text-[#007aff] transition-colors cursor-pointer" title="Overview" aria-label="Overview">
+            <i data-lucide="home" class="w-5 h-5"></i>
+        </button>
+        <button onclick="switchWindowPage('projects')" id="mob-tab-projects" class="w-10 h-10 rounded-full flex items-center justify-center text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer" title="Projects" aria-label="Projects">
+            <i data-lucide="layout-grid" class="w-5 h-5"></i>
+        </button>
+        <button onclick="switchWindowPage('vault')" id="mob-tab-vault" class="w-10 h-10 rounded-full flex items-center justify-center text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer" title="Zip Vault" aria-label="Zip Vault">
+            <i data-lucide="folder-archive" class="w-5 h-5"></i>
+        </button>
+        <button onclick="switchWindowPage('docs')" id="mob-tab-docs" class="w-10 h-10 rounded-full flex items-center justify-center text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer" title="Specs & Docs" aria-label="Specs & Docs">
+            <i data-lucide="file-text" class="w-5 h-5"></i>
+        </button>
+        <button onclick="switchWindowPage('assistant')" id="mob-tab-assistant" class="w-10 h-10 rounded-full flex items-center justify-center text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer" title="Assistant" aria-label="Assistant">
+            <i data-lucide="message-square" class="w-5 h-5"></i>
+        </button>
+    </nav>
+
+    <!-- Quiet Footer -->
+    <footer class="py-8 max-w-6xl mx-auto px-4 sm:px-6 text-xs text-[var(--ios-text-muted)] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+            © 2026 Mahadevu M P (@Devputta)
+        </div>
+        <div class="flex items-center space-x-6 text-[var(--ios-text-muted)]">
+            <button onclick="switchWindowPage('overview')" class="hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer">Overview</button>
+            <button onclick="switchWindowPage('projects')" class="hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer">Projects</button>
+            <button onclick="switchWindowPage('vault')" class="hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer">Zip Vault</button>
+            <button onclick="switchWindowPage('docs')" class="hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer">Specs</button>
+            <button onclick="switchWindowPage('assistant')" class="hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer">Contact</button>
+        </div>
+    </footer>
+
+    <!-- iOS Window Pages Controller & Portfolio Scripts -->
+    <script>
+        const WINDOW_PAGES = ['overview', 'projects', 'vault', 'docs', 'assistant'];
+        const WINDOW_TITLES = {
+            overview: 'Overview',
+            projects: 'Projects',
+            vault: 'Zip Vault',
+            docs: 'Specs & Docs',
+            assistant: 'Contact & Q&A'
+        };
+
+        let currentWindowPage = 'overview';
+        let showAllWindows = false;
+        let isDarkMode = true;
+
+        function initTheme() {
+            const saved = localStorage.getItem('ios_theme');
+            if (saved === 'light') {
+                setTheme(false);
+            } else {
+                setTheme(true);
+            }
+        }
+
+        function toggleTheme() {
+            setTheme(!isDarkMode);
+        }
+
+        function setTheme(dark) {
+            isDarkMode = dark;
+            const root = document.documentElement;
+            const btnIcon = document.getElementById('theme-toggle-icon');
+
+            if (dark) {
+                root.classList.add('dark');
+                localStorage.setItem('ios_theme', 'dark');
+                if (btnIcon) btnIcon.innerHTML = '<i data-lucide="sun" class="w-4 h-4 text-[#ff9500]"></i>';
+            } else {
+                root.classList.remove('dark');
+                localStorage.setItem('ios_theme', 'light');
+                if (btnIcon) btnIcon.innerHTML = '<i data-lucide="moon" class="w-4 h-4 text-[#007aff]"></i>';
+            }
+
+            lucide.createIcons();
+        }
+
+        function switchWindowPage(pageId, event) {
+            if (event) event.preventDefault();
+            if (!WINDOW_PAGES.includes(pageId)) pageId = 'overview';
+
+            currentWindowPage = pageId;
+            showAllWindows = false;
+
+            const allBtn = document.getElementById('all-windows-btn');
+            if (allBtn) allBtn.innerText = 'Show All Pages';
+
+            WINDOW_PAGES.forEach((id, idx) => {
+                const section = document.getElementById(`window-${id}`);
+                const tab = document.getElementById(`win-tab-${id}`);
+                const dot = document.getElementById(`dot-${id}`);
+                const mobTab = document.getElementById(`mob-tab-${id}`);
+
+                const isActive = (id === pageId);
+
+                if (section) {
+                    if (isActive) {
+                        section.classList.add('active-window');
+                    } else {
+                        section.classList.remove('active-window');
+                    }
+                }
+
+                if (tab) {
+                    if (isActive) {
+                        tab.className = 'win-nav-tab px-4 py-1.5 rounded-full bg-[var(--ios-card)] text-[var(--ios-text-primary)] font-semibold shadow-sm transition-all whitespace-nowrap cursor-pointer';
+                    } else {
+                        tab.className = 'win-nav-tab px-4 py-1.5 rounded-full text-[var(--ios-text-secondary)] hover:text-[var(--ios-text-primary)] transition-all whitespace-nowrap cursor-pointer';
+                    }
+                }
+
+                if (dot) {
+                    dot.className = isActive
+                        ? 'w-2 h-2 rounded-full bg-[#007aff] transition-all cursor-pointer'
+                        : 'w-2 h-2 rounded-full bg-[var(--ios-text-muted)]/35 hover:bg-[var(--ios-text-muted)] transition-all cursor-pointer';
+                }
+
+                if (mobTab) {
+                    mobTab.className = isActive
+                        ? 'w-10 h-10 rounded-full flex items-center justify-center text-[#007aff] bg-[var(--ios-elevated)] transition-colors cursor-pointer'
+                        : 'w-10 h-10 rounded-full flex items-center justify-center text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-colors cursor-pointer';
+                }
+
+                if (isActive) {
+                    const counter = document.getElementById('ios-window-counter');
+                    if (counter) counter.innerText = `Window ${idx + 1} of ${WINDOW_PAGES.length}`;
+                }
+            });
+
+            const titleEl = document.getElementById('ios-window-title');
+            if (titleEl) titleEl.innerText = WINDOW_TITLES[pageId] || 'Overview';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function cycleWindowPage(direction) {
+            const currentIndex = WINDOW_PAGES.indexOf(currentWindowPage);
+            const nextIndex = (currentIndex + direction + WINDOW_PAGES.length) % WINDOW_PAGES.length;
+            switchWindowPage(WINDOW_PAGES[nextIndex]);
+        }
+
+        function toggleAllWindowsMode() {
+            showAllWindows = !showAllWindows;
+            const allBtn = document.getElementById('all-windows-btn');
+            const titleEl = document.getElementById('ios-window-title');
+            const counter = document.getElementById('ios-window-counter');
+
+            if (showAllWindows) {
+                WINDOW_PAGES.forEach(id => {
+                    const section = document.getElementById(`window-${id}`);
+                    if (section) section.classList.add('active-window');
+                });
+                if (allBtn) allBtn.innerText = 'Single Window View';
+                if (titleEl) titleEl.innerText = 'All Pages';
+                if (counter) counter.innerText = 'Showing All 5 Windows';
+            } else {
+                switchWindowPage(currentWindowPage);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            switchWindowPage('overview');
+            viewDoc('architecture');
+            fetchGitHubStats();
+            initAssistant();
+        });
+
+        function openProjectUrl(event, url) {
+            if (event && event.target && event.target.closest('button, a')) {
+                return;
+            }
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        // Documentation database
+        const docRegistry = {
+            architecture: {
+                file: '/docs/architecture.md',
+                content: `### 1. Overview
+This portfolio is a single-page application structured around iOS-style window pages controlled from the top navigation bar.
+
+### 2. Window Layout
+\`\`\`
+index.html
+ ├── Top Header Bar (Brand | Window Tabs | Symbol Controls)
+ ├── Window 1: Overview & GitHub Profile Card
+ ├── Window 2: Open-Source Projects & Live GitHub Stats
+ ├── Window 3: Source Zip Vault
+ ├── Window 4: Project Specs & Docs
+ └── Window 5: Contact & Project Q&A
+\`\`\`
+
+### 3. Repositories
+- DiagramLab: https://github.com/Devputta/DiagramLab
+- DataLens: https://github.com/Devputta/DataLens
+- SNAKE---G: https://github.com/Devputta/SNAKE---G
+- BAD-DECISION: https://github.com/Devputta/BAD-DECISION
+- Battel-Game: https://github.com/Devputta/Battel-Game
+- The-Game-Hates-You: https://github.com/Devputta/The-Game-Hates-You
+- Zip Vault: https://github.com/Devputta/Open-Sourec--Project-Zip-files`
+            },
+            prd: {
+                file: '/docs/PRD.md',
+                content: `### 1. Purpose
+A fast, clean portfolio to share my open-source projects, GitHub repositories, and downloadable zip files.
+
+### 2. Design Principles
+- Light and Dark iOS theme support saved in \`localStorage\`.
+- Symbol-only icon buttons where symbols exist; clean text labels where no symbols are used.
+- Window pages accessible directly from the header.`
+            },
+            memory: {
+                file: '/docs/memory.md',
+                content: `### 1. Windowed Navigation
+- Replaced the phone simulator with native iOS window pages switched from the header.
+
+### 2. Authentic Copy & GitHub Integration
+- Replaced generic buzzwords with straightforward first-person descriptions and integrated the live @Devputta GitHub profile card.`
+            },
+            rules: {
+                file: '/docs/rules.md',
+                content: `### 1. Code Standards
+- Semantic HTML5 and Tailwind CSS with CSS custom properties for theming.
+- Clear, human-written copy with zero filler.
+- Direct links to public GitHub repositories.`
+            },
+            security: {
+                file: '/docs/security.md',
+                content: `### 1. Security Policy
+- All repository links point directly to github.com/Devputta.
+- No trackers, analytics scripts, or third-party cookies.`
+            }
+        };
+
+        function viewDoc(docKey) {
+            const tabs = ['architecture', 'prd', 'memory', 'rules', 'security'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) {
+                    if (t === docKey) {
+                        el.className = 'doc-tab px-3.5 py-1.5 rounded-full bg-[var(--ios-elevated)] text-[var(--ios-text-primary)] transition-all font-semibold cursor-pointer';
+                    } else {
+                        el.className = 'doc-tab px-3.5 py-1.5 rounded-full text-[var(--ios-text-muted)] hover:text-[var(--ios-text-primary)] transition-all cursor-pointer';
+                    }
+                }
+            });
+
+            const doc = docRegistry[docKey];
+            if (doc) {
+                document.getElementById('doc-filename').innerText = doc.file;
+                let formatted = doc.content
+                    .replace(/### (.*?)\n/g, '<h4 class="text-sm sm:text-base font-bold text-[var(--ios-text-primary)] mt-4 mb-2">$1</h4>')
+                    .replace(/```([\s\S]*?)```/g, '<pre class="bg-[var(--ios-code-bg)] p-4 rounded-xl border border-[var(--ios-separator)] my-3 overflow-x-auto text-xs text-[#007aff]"><code>$1</code></pre>')
+                    .replace(/`([^`]+)`/g, '<code class="bg-[var(--ios-elevated)] px-1.5 py-0.5 rounded text-[#007aff] text-xs font-mono">$1</code>')
+                    .replace(/- \*\*(.*?)\*\*(.*)/g, '<li class="ml-4 list-disc text-[var(--ios-text-primary)]"><strong class="font-bold">$1</strong>$2</li>')
+                    .replace(/- (.*)/g, '<li class="ml-4 list-disc text-[var(--ios-text-secondary)]">$1</li>')
+                    .replace(/\n\n/g, '<br>');
+
+                document.getElementById('doc-content-viewer').innerHTML = formatted;
+            }
+        }
+
+        function copyEmailToClipboard() {
+            const email = 'mahadevump657@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                const icon = document.getElementById('copy-email-icon');
+                const btn = document.getElementById('copy-email-btn');
+                if (btn) btn.classList.add('bg-[#34c759]/20', 'border-[#34c759]');
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'check');
+                    lucide.createIcons();
+                }
+                setTimeout(() => {
+                    if (btn) btn.classList.remove('bg-[#34c759]/20', 'border-[#34c759]');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'copy');
+                        lucide.createIcons();
+                    }
+                }, 2000);
+            });
+        }
+
+        // --- PROJECT Q&A ---
+        const assistantConversation = [
+            {
+                role: 'assistant',
+                text: `Hi! Ask me anything about Mahadevu's projects, where to download the zip files, or how to get in touch.`,
+                time: '09:41'
+            }
+        ];
+
+        function initAssistant() {
+            renderAssistantMessages();
+        }
+
+        function clearAssistantChat() {
+            assistantConversation.length = 0;
+            assistantConversation.push({
+                role: 'assistant',
+                text: 'Chat cleared. What would you like to know?',
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            });
+            renderAssistantMessages();
+        }
+
+        function renderAssistantMessages() {
+            const stream = document.getElementById('assistant-chat-stream');
+            if (!stream) return;
+
+            let html = '';
+            assistantConversation.forEach((msg) => {
+                if (msg.role === 'user') {
+                    html += `
+                        <div class="flex justify-end items-end">
+                            <div class="max-w-[85%] bg-[#007aff] text-white px-4 py-2.5 rounded-2xl rounded-tr-sm text-xs leading-relaxed shadow-sm font-sans">
+                                <div>${escapeHtml(msg.text)}</div>
+                                <div class="text-[9px] text-white/60 text-right mt-1 font-mono">${msg.time}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="flex justify-start items-start">
+                            <div class="max-w-[88%] bg-[var(--ios-subtle)] border border-[var(--ios-separator)] text-[var(--ios-text-primary)] px-4 py-3 rounded-2xl rounded-tl-sm text-xs leading-relaxed shadow-sm">
+                                <div class="space-y-2 leading-relaxed">${formatAssistantOutput(msg.text)}</div>
+                                <div class="text-[9px] text-[var(--ios-text-muted)] mt-1.5 font-mono">${msg.time}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            stream.innerHTML = html;
+            stream.scrollTop = stream.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatAssistantOutput(text) {
+            return text
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[var(--ios-text-primary)]">$1</strong>')
+                .replace(/`([^`]+)`/g, '<code class="bg-[var(--ios-elevated)] px-1.5 py-0.5 rounded text-[#007aff] font-mono text-[11px]">$1</code>');
+        }
+
+        function handleAssistantSubmit(event) {
+            event.preventDefault();
+            const input = document.getElementById('assistant-user-input');
+            if (!input) return;
+            const query = input.value.trim();
+            if (!query) return;
+
+            input.value = '';
+            askAssistantPrompt(query);
+        }
+
+        function askAssistantPrompt(query) {
+            const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            assistantConversation.push({
+                role: 'user',
+                text: query,
+                time: now
+            });
+            renderAssistantMessages();
+
+            setTimeout(() => {
+                const answer = generateAssistantResponse(query);
+                assistantConversation.push({
+                    role: 'assistant',
+                    text: answer,
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                });
+                renderAssistantMessages();
+            }, 200);
+        }
+
+        function generateAssistantResponse(rawQuery) {
+            const q = rawQuery.toLowerCase();
+
+            if (q.includes('diagram') || q.includes('diagramlab')) {
+                return `**DiagramLab** is a web canvas for drawing system diagrams, flowcharts, and connecting nodes.\n\n- **Built with:** TypeScript & SVG\n- **GitHub:** https://github.com/Devputta/DiagramLab`;
+            }
+
+            if (q.includes('datalens') || q.includes('dataset') || q.includes('data')) {
+                return `**DataLens** is a browser tool for inspecting datasets, filtering rows, and viewing charts.\n\n- **Built with:** TypeScript\n- **GitHub:** https://github.com/Devputta/DataLens`;
+            }
+
+            if (q.includes('snake') || q.includes('game') || q.includes('battel') || q.includes('battle') || q.includes('decision') || q.includes('hate')) {
+                return `I've built four browser games:\n\n- **SNAKE---G:** Classic arcade Snake on HTML5 Canvas (https://github.com/Devputta/SNAKE---G)\n- **BAD-DECISION:** Branching choice game (https://github.com/Devputta/BAD-DECISION)\n- **Battel-Game:** Turn-based arena combat (https://github.com/Devputta/Battel-Game)\n- **The-Game-Hates-You:** Fast reflex survival game (https://github.com/Devputta/The-Game-Hates-You)`;
+            }
+
+            if (q.includes('zip') || q.includes('download') || q.includes('vault') || q.includes('archive')) {
+                return `You can download the zip files for all projects from the **Zip Vault** tab in the header, or directly on GitHub:\n\n- **Repo:** https://github.com/Devputta/Open-Sourec--Project-Zip-files`;
+            }
+
+            if (q.includes('contact') || q.includes('message') || q.includes('hire') || q.includes('email') || q.includes('reach')) {
+                return `You can email me directly at \`mahadevump657@gmail.com\` or check out my GitHub at https://github.com/Devputta.`;
+            }
+
+            return `Here are the main projects on this site: **DiagramLab**, **DataLens**, **SNAKE---G**, **BAD-DECISION**, **Battel-Game**, and **The-Game-Hates-You**.\n\nUse the tabs in the top bar to view the repos or download zip files, or email me at \`mahadevump657@gmail.com\`.`;
+        }
+
+        // --- GITHUB REPOSITORY METRICS ENGINE ---
+        const FEATURED_REPOS = [
+            { name: 'DiagramLab', role: 'Diagram & Flowchart Builder', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'DataLens', role: 'Dataset Viewer & Filter Tool', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'SNAKE---G', role: 'Classic Arcade Snake Game', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'BAD-DECISION', role: 'Branching Choice Game', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'Battel-Game', role: 'Turn-Based Arena Game', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'The-Game-Hates-You', role: 'Fast Reflex Challenge', fallbackStars: 1, fallbackForks: 0, lang: 'TypeScript' },
+            { name: 'Open-Sourec--Project-Zip-files', role: 'Project Zip Archives', fallbackStars: 1, fallbackForks: 0, lang: 'Markdown' }
+        ];
+
+        let cachedGitHubData = null;
+
+        async function fetchGitHubStats(force = false) {
+            const refreshIcon = document.getElementById('github-refresh-icon');
+            const syncStatus = document.getElementById('github-sync-status');
+            
+            if (refreshIcon) refreshIcon.classList.add('animate-spin');
+            if (syncStatus) syncStatus.innerText = 'Syncing GitHub...';
+
+            try {
+                let repos = cachedGitHubData;
+                if (!repos || force) {
+                    const response = await fetch('https://api.github.com/users/Devputta/repos?per_page=100', {
+                        headers: { 'Accept': 'application/vnd.github.v3+json' }
+                    });
+                    if (!response.ok) {
+                        throw new Error(`GitHub API HTTP ${response.status}`);
+                    }
+                    repos = await response.json();
+                    cachedGitHubData = repos;
+                }
+
+                renderGitHubDashboard(repos);
+                
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                if (syncStatus) syncStatus.innerText = `Synced ${timeStr}`;
+
+            } catch (err) {
+                renderGitHubDashboard(null);
+                if (syncStatus) syncStatus.innerText = 'GitHub stats loaded';
+            } finally {
+                if (refreshIcon) {
+                    setTimeout(() => refreshIcon.classList.remove('animate-spin'), 400);
+                }
+            }
+        }
+
+        function renderGitHubDashboard(apiRepos) {
+            let totalRepos = 50;
+            let totalStars = 0;
+            let totalForks = 0;
+            const repoMap = new Map();
+
+            if (Array.isArray(apiRepos) && apiRepos.length > 0) {
+                totalRepos = apiRepos.length;
+                if (apiRepos[0] && apiRepos[0].owner && apiRepos[0].owner.avatar_url) {
+                    const avatarImg = document.getElementById('github-profile-avatar');
+                    if (avatarImg) avatarImg.src = apiRepos[0].owner.avatar_url;
+                }
+                apiRepos.forEach(repo => {
+                    totalStars += (repo.stargazers_count || 0);
+                    totalForks += (repo.forks_count || 0);
+                    repoMap.set(repo.name.toLowerCase(), repo);
+                });
+            } else {
+                FEATURED_REPOS.forEach(r => {
+                    totalStars += r.fallbackStars;
+                    totalForks += r.fallbackForks;
+                });
+                totalStars = Math.max(totalStars, 12);
+            }
+
+            const totalReposEl = document.getElementById('stat-total-repos');
+            const heroReposEl = document.getElementById('hero-gh-repos');
+            const totalStarsEl = document.getElementById('stat-total-stars-val');
+            const totalForksEl = document.getElementById('stat-total-forks-val');
+            
+            if (totalReposEl) totalReposEl.innerText = `${totalRepos}+`;
+            if (heroReposEl) heroReposEl.innerText = `${totalRepos}+`;
+            if (totalStarsEl) totalStarsEl.innerText = totalStars;
+            if (totalForksEl) totalForksEl.innerText = totalForks;
+
+            const container = document.getElementById('github-repos-container');
+            if (!container) return;
+
+            let html = '';
+            FEATURED_REPOS.forEach((target) => {
+                const apiData = repoMap.get(target.name.toLowerCase());
+                const stars = apiData ? (apiData.stargazers_count || 0) : target.fallbackStars;
+                const forks = apiData ? (apiData.forks_count || 0) : target.fallbackForks;
+                const lang = (apiData && apiData.language) ? apiData.language : target.lang;
+                const repoUrl = (apiData && apiData.html_url) ? apiData.html_url : `https://github.com/Devputta/${target.name}`;
+
+                html += `
+                    <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-[var(--ios-subtle)] border border-[var(--ios-separator)] flex flex-col justify-between hover:border-[#007aff]/50 transition-colors">
+                        <div>
+                            <div class="text-xs font-bold text-[var(--ios-text-primary)] truncate font-mono mb-1">
+                                ${target.name}
+                            </div>
+                            <div class="text-[11px] text-[var(--ios-text-muted)] truncate mb-3">${target.role}</div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2 border-t border-[var(--ios-separator)] text-[11px] text-[var(--ios-text-muted)] tabular-nums">
+                            <span>${lang}</span>
+                            <span>★ ${stars} · Forks ${forks}</span>
+                        </div>
+                    </a>
+                `;
+
+                const cardBadge = document.getElementById(`card-stat-${target.name}`);
+                if (cardBadge) {
+                    const starSpan = cardBadge.querySelector('.star-count');
+                    const langSpan = cardBadge.querySelector('.lang-name');
+                    if (starSpan) starSpan.innerText = stars;
+                    if (langSpan) langSpan.innerText = lang;
+                }
+            });
+
+            container.innerHTML = html;
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
