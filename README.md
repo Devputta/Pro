@@ -1,7 +1,7 @@
-<p align="center"># MMP — Developer Portfolio & Engineering Workspace</p>
+<p align="center">MMP — Developer Portfolio & Engineering Workspace</p>
 
 <p align="center">
-  <img src="docs/assets/logo.svg" alt="MMP Logo" width="110" />
+  <img src="https://raw.githubusercontent.com/Devputta/Drafts-might-be-needed-/main/LOGO/Gemini_Generated_Image_xkfdzlxkfdzlxkfd.png" alt="MMP" width="110" />
 </p>
 
 <h3 align="center">Devputta · Software Engineer · Vibe Coder</h3>
@@ -166,9 +166,6 @@ dont-its-profile/
 ├── public/
 │
 ├── src/
-│
-├── docs/assets/
-│   └── logo.svg
 │
 ├── index.html
 ├── CONTRIBUTING.md
